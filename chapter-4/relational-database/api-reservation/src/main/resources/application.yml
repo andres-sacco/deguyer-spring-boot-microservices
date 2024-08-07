@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: api-reservation
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3310/flights_reservation
+    username: root
+    password: muppet
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-root.xml
+
+server:
+  port: 8090
+  error:
+    include-stacktrace: always
+  servlet:
+    context-path: /api/flights/reservation
+
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: "*"
+
+  info:
+    java:
+      enabled: false #change if you want to obtain information about Java
+    os:
+      enabled: false #change if you want to obtain information about OS
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: false
+info:
+  app:
+    name: "@project.artifactId@"
+    version: "@project.version@"
+  contact:
+    email: "sacco.andres@gmail.com"
+    slack: "adsacco"

@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: api-reservation
+
+  data:
+    mongodb:
+      uri: "mongodb://root:rootpassword@localhost:27017/flights_reservation?authSource=admin"
+
+server:
+  port: 8090
+  error:
+    include-stacktrace: always
+  servlet:
+    context-path: /api/flights/reservation
+
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: health,info,metrics,cache
+
+  info:
+    java:
+      enabled: false #change if you want to obtain information about Java
+    os:
+      enabled: false #change if you want to obtain information about OS
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: false
+info:
+  app:
+    name: "@project.artifactId@"
+    version: "@project.version@"
+  contact:
+    email: "sacco.andres@gmail.com"
+    slack: "adsacco"
