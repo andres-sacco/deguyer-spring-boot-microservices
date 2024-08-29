@@ -1,3 +1,7 @@
+--liquibase formatted sql
+
+--changeset reservation:1
+
 create table contact (id bigint not null auto_increment, email varchar(30) not null, telephone_number varchar(30) not null, primary key (id));
 
 create table passenger (id bigint not null auto_increment, birthday date not null, nationality varchar(3) not null, reservation_id bigint, document_number varchar(10) not null, document_type varchar(10) not null, first_name varchar(10) not null, last_name varchar(10) not null, primary key (id));
