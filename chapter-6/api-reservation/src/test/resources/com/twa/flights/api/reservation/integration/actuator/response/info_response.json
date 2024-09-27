@@ -1,0 +1,13 @@
+{
+  "app": {
+    "name": #notnull,
+    "version": #notnull
+  },
+  "contact": {
+    "email": "sacco.andres@gmail.com",
+    "slack": "adsacco"
+  },
+  "reservation-stats": {
+    "amount": #notnull
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "itineraryId": "2",
+  "searchId": "2",
+  "passengers": [
+    {
+      "firstName": "Andres",
+      "lastName": "Sacco",
+      "documentNumber": "987654321",
+      "documentType": "DNI",
+      "nationality": "AR",
+      "birthday": "1985-01-01"
+    }
+  ],
+  "contact": {
+    "telephoneNumber": "54911111111",
+    "email": "sacco.andres@gmail.com"
+  }
+}
