@@ -1,8 +1,6 @@
 version: '3.1'
-
 services:
   api-reservation-db:
-    container_name: api-reservation-db
     image: mysql:8.2.0
     restart: always
     environment:
@@ -10,3 +8,11 @@ services:
       MYSQL_ROOT_PASSWORD: 'muppet'
     ports:
       - 3312:3306
+
+  api-catalog:
+    image: wiremock/wiremock:2.32.0
+    ports:
+      - 6070:8080
+    volumes:
+      - ./wiremock:/home/wiremock
+    restart: always
