@@ -11,7 +11,6 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import java.util.Collections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,7 +26,6 @@ public class CatalogConnector extends TWAConnector {
 
     private HttpConnectorConfiguration configuration;
 
-    @Autowired
     public CatalogConnector(HttpConnectorConfiguration configuration) {
         this.configuration = configuration;
     }

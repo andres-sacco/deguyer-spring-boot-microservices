@@ -7,7 +7,6 @@ import com.twa.flights.api.reservation.connector.CatalogConnector;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCache;
@@ -25,7 +24,6 @@ public class CacheManagerConfiguration {
 
     private final CatalogConnector catalogConnector;
 
-    @Autowired
     public CacheManagerConfiguration(
             final CacheConfiguration cacheConfiguration, final CatalogConnector catalogConnector) {
         this.cacheConfiguration = cacheConfiguration;

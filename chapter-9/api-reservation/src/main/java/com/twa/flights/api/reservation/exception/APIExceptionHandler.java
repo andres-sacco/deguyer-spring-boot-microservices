@@ -31,7 +31,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
             WebRequest request) {
         List<String> reasons = new ArrayList<>();
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
-            reasons.add(String.format("%s - %s", error.getField(), error.getDefaultMessage()));
+            reasons.add("%s - %s".formatted(error.getField(), error.getDefaultMessage()));
         }
         return ResponseEntity.status(APIError.VALIDATION_ERROR.getHttpStatus())
                 .body(new ErrorDTO(APIError.VALIDATION_ERROR.getMessage(), reasons));

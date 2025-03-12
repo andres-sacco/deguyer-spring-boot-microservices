@@ -9,7 +9,6 @@ import com.twa.flights.api.reservation.exception.TWAException;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -25,7 +24,6 @@ public class ClusterConnector extends TWAConnector {
 
     private HttpConnectorConfiguration configuration;
 
-    @Autowired
     public ClusterConnector(HttpConnectorConfiguration configuration) {
         this.configuration = configuration;
     }

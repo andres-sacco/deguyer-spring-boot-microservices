@@ -1,8 +1,6 @@
 package com.twa.flights.api.reservation.architecture.layer;
 
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.constructors;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 import static com.twa.flights.api.reservation.architecture.general.ArchitectureConstants.*;
 
 import com.tngtech.archunit.core.importer.ImportOption;
@@ -56,8 +54,7 @@ public class ControllerRulesTest {
                     .orShould()
                     .beAnnotatedWith(Controller.class)
                     .because(
-                            String.format(
-                                    ANNOTATED_EXPLANATION, CONTROLLER_SUFFIX, "@RestController"));
+                            ANNOTATED_EXPLANATION.formatted(CONTROLLER_SUFFIX, "@RestController"));
 
     @ArchTest
     static final ArchRule methodsShouldReturnResponseEntity =

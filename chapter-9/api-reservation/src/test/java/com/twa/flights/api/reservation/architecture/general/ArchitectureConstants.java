@@ -20,6 +20,6 @@ public class ArchitectureConstants {
     private ArchitectureConstants() {}
 
     public static String namingExplanation(String packageName, String suffix) {
-        return String.format(NAMING_EXPLANATION, packageName, suffix);
+        return NAMING_EXPLANATION.formatted(packageName, suffix);
     }
 }
