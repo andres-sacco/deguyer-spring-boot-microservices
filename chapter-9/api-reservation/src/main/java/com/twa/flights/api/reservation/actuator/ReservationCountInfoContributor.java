@@ -1,0 +1,26 @@
+package com.twa.flights.api.reservation.actuator;
+
+import com.twa.flights.api.reservation.repository.ReservationRepository;
+import java.util.HashMap;
+import java.util.Map;
+import org.springframework.boot.actuate.info.Info;
+import org.springframework.boot.actuate.info.InfoContributor;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ReservationCountInfoContributor implements InfoContributor {
+
+    ReservationRepository repository;
+
+    public ReservationCountInfoContributor(ReservationRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public void contribute(Info.Builder builder) {
+        long reservationCount = repository.count();
+        Map<String, Object> reservationMap = new HashMap<>();
+        reservationMap.put("amount", reservationCount);
+        builder.withDetail("reservation-stats", reservationMap);
+    }
+}
