@@ -72,6 +72,13 @@ services:
     ports:
      - 9070:9070
     restart: always
+    
+  api-reservation:
+    image: adschosen/api-reservation:1.0.0
+    container_name: api-reservation
+    ports:
+     - 8090:8090
+    restart: always
 
   api-reservation-db:
     container_name: api-reservation-db

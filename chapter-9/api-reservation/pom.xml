@@ -331,6 +331,28 @@
 	</build>
 
 	<profiles>
+		<profile>
+			<id>PA</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven.surefire.version}</version>
+						<configuration>
+							<excludes>
+								<exclude>**/performance/**Test.java</exclude>
+								<exclude>**/unit/**Test.java</exclude>
+								<exclude>**/architecture/**Test.java</exclude>
+								<exclude>**/integration/**Test.java</exclude>
+							</excludes>
+							<argLine>-Dfile.encoding=UTF-8</argLine>
+							<argLine>-XX:+EnableDynamicAgentLoading</argLine>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 
 		<profile>
 			<id>DT</id>
