@@ -1,0 +1,22 @@
+[
+  {
+    "name": "com.github.benmanes.caffeine.cache.PSAMS",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "com.github.benmanes.caffeine.cache.PSAW",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "com.github.benmanes.caffeine.cache.SSMSWR",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "com.github.benmanes.caffeine.cache.PSWRMS",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  }
+]
