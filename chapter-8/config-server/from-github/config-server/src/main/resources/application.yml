@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-data
+
+  security:
+    user:
+      name: root
+      password: s3cr3t
+
+server:
+  port: 8888
+  error:
+    include-stacktrace: never
+  servlet:
+    context-path: /config-server
+
+  compression:
+    enabled: true
+    min-response-size: 2048
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: info,health,refresh
+
+  info:
+    java:
+      enabled: false #change if you want to obtain information about Java
+    os:
+      enabled: false #change if you want to obtain information about OS
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: false
+info:
+  app:
+    name: "@project.artifactId@"
+    version: "@project.version@"
+  contact:
+    email: "sacco.andres@gmail.com"
+    slack: "adsacco"

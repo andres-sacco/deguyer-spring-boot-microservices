@@ -74,11 +74,12 @@ services:
     restart: always
     
   api-reservation:
-    image: adschosen/api-reservation:1.0.0
+    image: api-reservation:0.0.1-SNAPSHOT
     container_name: api-reservation
     ports:
      - 8090:8090
     restart: always
+    command: ["--spring.config.location=classpath:/application-graalvm.yml"]
 
   api-reservation-db:
     container_name: api-reservation-db
