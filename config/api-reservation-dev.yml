@@ -48,7 +48,7 @@ management:
         enabled: false
 info:
   app:
-    name: "@project.artifactId@"
+    name: "api-reservation-dev"
     version: "@project.version@"
   contact:
     email: "sacco.andres@gmail.com"
