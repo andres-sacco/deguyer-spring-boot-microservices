@@ -54,7 +54,7 @@ management:
         enabled: false
 info:
   app:
-    name: "api-reservation-dev-event"
+    name: "api-reservation-dev-events"
     version: "@project.version@"
   contact:
     email: "sacco.andres@gmail.com"
