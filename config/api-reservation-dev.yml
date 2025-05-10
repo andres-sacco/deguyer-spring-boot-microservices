@@ -1,6 +1,6 @@
 spring:
   application:
-    name: api-reservation-dev-event
+    name: api-reservation-dev
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -54,7 +54,7 @@ management:
         enabled: false
 info:
   app:
-    name: "api-reservation-dev"
+    name: "api-reservation-dev-event"
     version: "@project.version@"
   contact:
     email: "sacco.andres@gmail.com"
