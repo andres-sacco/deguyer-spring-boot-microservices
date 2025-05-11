@@ -10,11 +10,6 @@ spring:
         native:
           search-locations: classpath:/config-data
 
-  security:
-    user:
-      name: root
-      password: s3cr3t
-
 server:
   port: 8888
   error:

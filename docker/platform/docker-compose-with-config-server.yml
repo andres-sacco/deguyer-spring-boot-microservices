@@ -72,7 +72,7 @@ services:
     ports:
      - 9070:9070
     restart: always
-
+    
   api-reservation-db:
     container_name: api-reservation-db
     image: mysql:8.2.0
@@ -82,3 +82,13 @@ services:
       MYSQL_ROOT_PASSWORD: 'muppet'
     ports:
       - 3312:3306
+      
+  config-server-messaging:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"      # AMQP protocol (used by Spring Cloud Bus)
+      - "15672:15672"    # RabbitMQ Management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest

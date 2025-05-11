@@ -1,19 +1,25 @@
+
 spring:
   application:
     name: config-server
-  profiles:
-    active: native
 
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:/config-data
-
-  security:
-    user:
-      name: root
-      password: s3cr3t
+        git:
+          uri: https://github.com/andres-sacco/deguyer-spring-boot-microservices.git
+          default-label: main
+          clone-on-start: true
+          search-paths: config
+          # For private repositories use this attributes
+          # username: your-username
+          # password: your-personal-access-token
+      
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 server:
   port: 8888
@@ -32,7 +38,7 @@ management:
     web:
       base-path: /management
       exposure:
-        include: info,health,refresh
+        include: info,health,refresh,bus-refresh
 
   info:
     java:
