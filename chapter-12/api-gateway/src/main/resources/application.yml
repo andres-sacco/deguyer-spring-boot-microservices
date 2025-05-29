@@ -1,0 +1,140 @@
+spring:
+  application:
+    name: api-gateway
+  profiles:
+    active: native
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+      routes:
+        # ✅ Clusters with Circuit Breaker
+        - id: clusters
+          uri: http://localhost:4070
+          predicates:
+            - Path=/api/flights/clusters/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: clustersCB
+                fallbackUri: forward:/fallback/clusters
+
+        # ✅ Reservation with Circuit Breaker
+        - id: reservation
+          uri: lb://API-RESERVATION
+          predicates:
+            - Path=/api/flights/reservation/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: reservationCB
+                fallbackUri: forward:/fallback/reservation
+
+        # ✅ Catalog with Circuit Breaker
+        - id: catalog
+          uri: http://localhost:6070
+          predicates:
+            - Path=/api/flights/catalog/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: catalogCB
+                fallbackUri: forward:/fallback/catalog
+
+        # 🔒 Explicit Blocked (return 403)
+        - id: block-pricing
+          uri: no://op
+          predicates:
+            - Path=/api/flights/pricing/**
+          filters:
+            - name: SetStatus
+              args:
+                status: 403
+
+        - id: block-itineraries-search
+          uri: no://op
+          predicates:
+            - Path=/api/flights/itineraries-search/**
+          filters:
+            - name: SetStatus
+              args:
+                status: 403
+
+        - id: block-provider-alpha
+          uri: no://op
+          predicates:
+            - Path=/api/flights/provider/alpha/**
+          filters:
+            - name: SetStatus
+              args:
+                status: 403
+
+        - id: block-provider-beta
+          uri: no://op
+          predicates:
+            - Path=/api/flights/provider/beta/**
+          filters:
+            - name: SetStatus
+              args:
+                status: 403
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      failure-rate-threshold: 50
+      sliding-window-type: count_based
+      sliding-window-size: 5
+      automatic-transition-from-open-to-half-open-enabled: true
+      wait-duration-in-open-state: 10s
+      permitted-number-of-calls-in-half-open-state: 1
+      register-health-indicator: false
+
+  backends:
+    catalogCB:
+      baseConfig: default
+    clustersCB:
+      baseConfig: default
+    reservationCB:
+      baseConfig: default
+server:
+  port: 8020
+  error:
+    include-stacktrace: never
+
+  compression:
+    enabled: true
+    min-response-size: 2048
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: "*"
+
+  info:
+    java:
+      enabled: false #change if you want to obtain information about Java
+    os:
+      enabled: false #change if you want to obtain information about OS
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: false
+info:
+  app:
+    name: "@project.artifactId@"
+    version: "@project.version@"
+  contact:
+    email: "sacco.andres@gmail.com"
+    slack: "adsacco"
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/discovery-server/eureka

@@ -1,0 +1,148 @@
+spring:
+  application:
+    name: api-reservation
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3312/flights_reservation
+    username: root
+    password: muppet
+  jpa:
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-root.xml
+
+  cloud:
+    discovery:
+      enabled: true
+
+server:
+  port: 8090
+  error:
+    include-stacktrace: always
+  servlet:
+    context-path: /api/flights/reservation
+
+  compression:
+    enabled: true
+    min-response-size: 2048
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: "*"
+
+  info:
+    java:
+      enabled: false #change if you want to obtain information about Java
+    os:
+      enabled: false #change if you want to obtain information about OS
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: false
+info:
+  app:
+    name: "@project.artifactId@"
+    version: "@project.version@"
+  contact:
+    email: "sacco.andres@gmail.com"
+    slack: "adsacco"
+
+http-connector:
+  defaultConfig: &commonDefaultConfig
+    connectionTimeout: 5000
+    readTimeout: 5000
+    responseTimeout: 5000
+  hosts:
+    api-catalog:
+      host: "localhost"
+      port: 6070
+      defaultConfig: &hostDefaultConfig
+        <<: *commonDefaultConfig
+        responseTimeout: 2000
+      endpoints:
+        country-by-id:
+          <<: *hostDefaultConfig
+          url: "/api/flights/catalog/country/{nationality}"
+          connectionTimeout: 4000
+    api-clusters:
+      host: "localhost"
+      port: 4070
+      defaultConfig: &hostDefaultConfig
+        <<: *commonDefaultConfig
+        responseTimeout: 2000
+      endpoints:
+        clusters-by-id:
+          <<: *hostDefaultConfig
+          url: "/api/flights/clusters/itineraries/{id}/itinerary/{itineraryId}"
+          connectionTimeout: 1
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      failure-rate-threshold: 50
+      sliding-window-type: count_based
+      sliding-window-size: 5
+
+      automatic-transition-from-open-to-half-open-enabled: true
+      wait-duration-in-open-state: 10s
+      permitted-number-of-calls-in-half-open-state: 1
+
+      register-health-indicator: false
+      record-exceptions:
+        - java.lang.RuntimeException
+        - java.lang.InterruptedException
+        - io.netty.handler.timeout.ReadTimeoutException
+        - org.springframework.web.reactive.function.client.WebClientRequestException
+  backends:
+    catalog:
+      baseConfig: default
+
+resilience4j.bulkhead:
+  configs:
+    default:
+      maxConcurrentCalls: 1
+  instances:
+    catalog:
+      maxConcurrentCalls: 1
+
+resilience4j.ratelimiter:
+  configs:
+    default:
+      register-health-indicator: true # Not include the request to the health
+      timeout-duration: 1000ms
+      limit-refresh-period: 10s #How many seconds count the number of request
+      limit-for-period: 2 #Number of request to the same endpoint
+  instances:
+    reservation:
+      baseConfig: default
+
+cache:
+  configuration:
+    CATALOG_COUNTRY:
+      refreshAfterWriteTime: 5 #MINUTES
+      expireAfterWriteTime: 10 #MINUTES
+      maxSize: 180
+
+springdoc:
+  api-docs:
+    path: "/documentation/api-docs"
+  swagger-ui:
+    path: "/documentation/swagger-ui"
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/discovery-server/eureka
