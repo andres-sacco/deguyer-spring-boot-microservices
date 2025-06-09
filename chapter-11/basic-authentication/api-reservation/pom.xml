@@ -127,56 +127,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit-junit5</artifactId>
-			<version>${archunit-junit5.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit-junit5-api</artifactId>
-			<version>${archunit-junit5.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.intuit.karate</groupId>
-			<artifactId>karate-junit5</artifactId>
-			<version>${karate.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.intuit.karate</groupId>
-			<artifactId>karate-gatling</artifactId>
-			<version>${karate.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>${testcontainers.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- QuickPerf dependencies -->
-		<dependency>
-			<groupId>org.quickperf</groupId>
-			<artifactId>quick-perf-junit5</artifactId>
-			<version>${quickperf.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.quickperf</groupId>
-			<artifactId>quick-perf-springboot2-sql-starter</artifactId>
-			<version>${quickperf.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- End of QuickPerf dependencies -->
-
 	</dependencies>
 
 	<build>

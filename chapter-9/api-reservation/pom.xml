@@ -21,7 +21,7 @@
 		<springdoc-openapi-starter-webmvc-ui.version>2.6.0</springdoc-openapi-starter-webmvc-ui.version>
 		<resilience4j-spring-boot3.version>2.1.0</resilience4j-spring-boot3.version>
 		<liquibase-core.version>4.20.0</liquibase-core.version>
-
+		
 		<archunit-junit5.version>1.2.1</archunit-junit5.version>
 		<testcontainers.version>1.19.7</testcontainers.version>
 		<karate.version>1.4.1</karate.version>
@@ -29,11 +29,12 @@
 		<quickperf.version>1.1.0</quickperf.version>
 		<zally-ruleset-zalando.version>2.1.0</zally-ruleset-zalando.version>
 
-		<versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
-		<depclean-maven-plugin.version>2.0.6</depclean-maven-plugin.version>
 		<zally-maven-plugin.version>1.0.3</zally-maven-plugin.version>
 		<springdoc-openapi-maven-plugin.version>1.1</springdoc-openapi-maven-plugin.version>
 		<pitest-junit5-plugin.version>0.15</pitest-junit5-plugin.version>
+
+		<versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
+		<depclean-maven-plugin.version>2.0.6</depclean-maven-plugin.version>
 		<maven.surefire.version>3.1.2</maven.surefire.version>
 		<maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
 		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
@@ -134,55 +135,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit-junit5</artifactId>
-			<version>${archunit-junit5.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit-junit5-api</artifactId>
-			<version>${archunit-junit5.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.intuit.karate</groupId>
-			<artifactId>karate-junit5</artifactId>
-			<version>${karate.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.intuit.karate</groupId>
-			<artifactId>karate-gatling</artifactId>
-			<version>${karate.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- QuickPerf dependencies -->
-		<dependency>
-			<groupId>org.quickperf</groupId>
-			<artifactId>quick-perf-junit5</artifactId>
-			<version>${quickperf.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.quickperf</groupId>
-			<artifactId>quick-perf-springboot2-sql-starter</artifactId>
-			<version>${quickperf.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- End of QuickPerf dependencies -->
 
 	</dependencies>
 
