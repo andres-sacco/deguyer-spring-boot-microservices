@@ -1,0 +1,106 @@
+{
+  "id": null,
+  "title": "Loki Logs Overview",
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "10s",
+  "panels": [
+     {
+      "title": "Logs by Level (Graph)",
+      "type": "timeseries",
+      "id": 5,
+      "datasource": { "type": "loki", "uid": "d76c287e-4900-4798-9753-efba546a69b7" },
+      "targets": [
+        {
+          "expr": "count_over_time({app=\"api-reservation\"} |= \"ERROR\" [5m])",
+          "refId": "A",
+          "legendFormat": "ERROR"
+        },
+        {
+          "expr": "count_over_time({app=\"api-reservation\"} |= \"WARN\" [5m])",
+          "refId": "B",
+          "legendFormat": "WARN"
+        },
+        {
+          "expr": "count_over_time({app=\"api-reservation\"} |= \"INFO\" [5m])",
+          "refId": "C",
+          "legendFormat": "INFO"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 16, "w": 24, "h": 8 }
+    },
+    {
+      "title": "Error Log Count (Last 1h)",
+      "type": "stat",
+      "id": 2,
+      "datasource": { "type": "loki", "uid": "d76c287e-4900-4798-9753-efba546a69b7" },
+      "targets": [
+        {
+          "expr": "count_over_time({app=\"spring-boot-app\"} |= \"ERROR\" [1h])",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 10, "w": 6, "h": 6 }
+    },
+    {
+      "title": "Warning Log Count (Last 1h)",
+      "type": "stat",
+      "id": 3,
+      "datasource": { "type": "loki", "uid": "d76c287e-4900-4798-9753-efba546a69b7" },
+      "targets": [
+        {
+          "expr": "count_over_time({app=\"api-reservation\"} |= \"WARN\" [1h])",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 6, "y": 10, "w": 6, "h": 6 }
+    },
+    {
+      "title": "Debug Log Count (Last 1h)",
+      "type": "stat",
+      "id": 3,
+      "datasource": { "type": "loki", "uid": "d76c287e-4900-4798-9753-efba546a69b7" },
+      "targets": [
+        {
+          "expr": "count_over_time({app=\"api-reservation\"} |= \"DEBUG\" [1h])",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 12, "y": 10, "w": 6, "h": 6 }
+    },
+    {
+      "title": "Info Log Count (Last 1h)",
+      "type": "stat",
+      "id": 4,
+      "datasource": { "type": "loki", "uid": "d76c287e-4900-4798-9753-efba546a69b7" },
+      "targets": [
+        {
+          "expr": "count_over_time({app=\"api-reservation\"} |= \"INFO\" [1h])",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 18, "y": 10, "w": 6, "h": 6 }
+    },
+        {
+      "title": "Logs per Level",
+      "type": "logs",
+      "id": 1,
+      "datasource": { "type": "loki", "uid": "d76c287e-4900-4798-9753-efba546a69b7" },
+      "targets": [
+        {
+          "expr": "{app=\"api-reservation\"}",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "showLabels": true,
+        "showTime": true,
+        "dedupStrategy": "none",
+        "wrapLogMessage": true
+      },
+      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 10 }
+    }
+  ]
+}
+
