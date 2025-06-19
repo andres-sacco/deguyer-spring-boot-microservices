@@ -27,10 +27,7 @@
                     "level":"%level",
                     "class":"%logger{36}",
                     "thread":"%thread",
-                    "message": "%message",
-                    "traceId": "%X{trace_id}",
-                    "spanId": "%X{span_id}",
-                    "requestId": "%X{X-Request-ID}"
+                    "message": "%message"
                     }
                 </pattern>
             </message>
